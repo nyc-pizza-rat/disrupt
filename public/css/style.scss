@@ -1,8 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+// Config
+@import "config";
 
-a {
-  color: #00B7FF;
-}
+// Bootstrap
+@import "../components/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Components
+@import "components/chat";
+@import "components/site-header";
