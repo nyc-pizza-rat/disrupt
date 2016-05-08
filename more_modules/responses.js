@@ -1,6 +1,7 @@
 const healthCodes = require('../api_modules/health-codes');
 const mtaStatus = require('../api_modules/mta_status');
 const responseText = require('./responseText');
+const weatherStatus = require('weather-js');
 
 function eat(name, cb) {
   console.log('eat');
@@ -29,9 +30,24 @@ function train(line, cb) {
   });
 }
 
+function weather(location, cb) {
+  var weatherQuery = {
+    search: location,
+    degreeType: 'F'
+  };
+  weatherStatus.find(weatherQuery, function(err, res) {
+    if(err) {
+      console.log('error: ',err);
+      cb(weatherResponse('error'));
+    }
+    cb(weatherResponse(res));
+  });
+}
+
 const commands = {
   eat: eat,
-  train: train
+  train: train,
+  weather: weather
 };
 
 function splitCommands(message) {
@@ -50,14 +66,22 @@ function restaurantCheck(healthCode) {
 
 function trainCheck(lineStatus) {
   if(lineStatus !== 'GOOD SERVICE') {
-    return 'Ha! Good luck with that!';
+    return 'Ha! Good luck with that! Maybe you should just walk instead - go ahead and ask me what the weather is like with "/weather [location]"';
   } else {
     return 'Ehh.. You might be OK.';
   }
 }
 
 function listTrains() {
-  return `One of us isn't doing this right and I'm assuming it's you. Please choose from the list of available trains: ${mtaStatus.getTrainString().split('').join(', ')}`
+  return `One of us isn't doing this right and I'm assuming it's you. Please choose from the list of available trains: ${mtaStatus.getTrainString().split('').join(', ')}`;
+}
+
+function weatherResponse(response) {
+  if(response === 'error') {
+    return 'I\'m sorry, but I don\'t recognize that location. Please enter a valid city, or zip code';
+  } else {
+    return `It's currently ${response[1].current.skytext.toLowerCase()} in ${response[0].location.name} with a temperature of ${response[1].current.temperature}°F and feels like ${response[1].current.feelslike}°F`;
+  }
 }
 
 function getResponse(message, cb) {
