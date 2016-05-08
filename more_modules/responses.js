@@ -46,8 +46,9 @@ function weather(location, cb) {
     if(err) {
       console.log('error: ',err);
       cb(weatherResponse('error'));
+    } else {
+      cb(weatherResponse(res));
     }
-    cb(weatherResponse(res));
   });
 }
 
@@ -87,20 +88,21 @@ function weatherResponse(response) {
   if(response === 'error') {
     return 'I\'m sorry, but I don\'t recognize that location. Please enter a valid city, or zip code';
   } else {
-    return `It's currently ${response[1].current.skytext.toLowerCase()} in ${response[0].location.name} with a temperature of ${response[1].current.temperature}°F and feels like ${response[1].current.feelslike}°F`;
+    console.log(response[0].current);
+    return `It's currently ${response[0].current.skytext.toLowerCase()} in ${response[0].location.name} with a temperature of ${response[0].current.temperature}°F and feels like ${response[0].current.feelslike}°F`;
   }
 }
 
 function getResponse(message, cb) {
   var command = splitCommands(message)[0];
   var secondParam = splitCommands(message)[1];
-  console.log(typeof commands[command] === 'function');
+  // console.log(typeof commands[command] === 'function');
   if (typeof commands[command] === 'function' && secondParam) {
-    console.log('command "is" a function');
+    // console.log('command "is" a function');
     commands[command](secondParam, cb);
   } else {
-    console.log('broken af');
-    cb('');
+    // console.log('broken af');
+    cb('Broken');
   }
 }
 
