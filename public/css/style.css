@@ -5840,9 +5840,9 @@ button.close {
 .panel .slidedown .glyphicon, .chat .glyphicon {
   margin-right: 5px; }
 
-.panel-body {
+.chat-window.panel-body {
   overflow-y: auto;
-  height: 50vh; }
+  height: 300px; }
 
 .logo {
   width: 50px;
