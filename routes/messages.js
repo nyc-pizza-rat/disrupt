@@ -5,7 +5,7 @@ const responses = require('../more_modules/responses');
 router.post('/', function(req, res) {
   console.log(req.body);
   console.log(responses);
-  responses.handle(req.body.message, function(response) {
+  responses.getResponse(req.body.message, function(response) {
     res.json({response: response});
   });
 });
