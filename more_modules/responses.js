@@ -5,7 +5,7 @@ const commands = {
   eat: function(name) {
     return healthCodes.getByName(name); // returns promise
   }
-}
+};
 
 function splitCommands(message) {
   var commandRE = /^\/(\w+)\s([\w\.\s]+)/;
@@ -13,6 +13,7 @@ function splitCommands(message) {
 }
 
 function restaurantCheck(healthCode) {
+  console.log(healthCode);
   if (healthCode.grade.toUpperCase() !== 'A') {
     return 'Don\'t even think of going to that place';
   } else {
@@ -21,11 +22,15 @@ function restaurantCheck(healthCode) {
 }
 
 function handle(message, cb) {
-  var parsedMessage = splitCommands(message);
-  if (typeof commands[parsedMessage[1]] === 'function') {
-    commands[parsedMessage[1]](parsedMessage[2]).then(function(healthCodes) {
-      console.log(healthCodes[0]);
-      cb(restaurantCheck(healthCodes[0]));
+  var command = splitCommands(message)[0];
+  var restaurantName = splitCommands(message)[1];
+  console.log(typeof commands[command] === 'function');
+  if (typeof commands[command] === 'function') {
+    commands[command](restaurantName).then(function(healthCodes) {
+      var codesWithGrades = healthCodes.filter(function(healthCode) {
+        return healthCode.hasOwnProperty('grade');
+      });
+      cb(restaurantCheck(codesWithGrades[0]));
     });
   } else {
     // send error 'fuck you' message
@@ -33,3 +38,6 @@ function handle(message, cb) {
 }
 
 // /eat 383 dumb st
+module.exports = {
+  handle: handle
+};
