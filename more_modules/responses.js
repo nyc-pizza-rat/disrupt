@@ -73,7 +73,6 @@ function restaurantCheck(healthCode) {
 
 function trainCheck(lineStatus) {
   if(lineStatus !== 'GOOD SERVICE') {
-<<<<<<< HEAD
     return getRandom(responseText.trains.positive) + 'Maybe you should just walk instead - go ahead and ask me what the weather is like with "/weather [location]"';
   } else {
     return getRandom(responseText.trains.negative);
