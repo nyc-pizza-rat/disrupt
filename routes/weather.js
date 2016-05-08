@@ -1,6 +1,6 @@
-var express = require('express');
-var weather = require('weather-js');
-var router = express.Router();
+const express = require('express');
+const weather = require('weather-js');
+const router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res) {
