@@ -5841,7 +5841,8 @@ button.close {
   margin-right: 5px; }
 
 .panel-body {
-  overflow-y: auto; }
+  overflow-y: auto;
+  height: 50vh; }
 
 .logo {
   width: 50px;
