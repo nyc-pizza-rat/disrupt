@@ -6,11 +6,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var routes = require('./routes/index');
 var users = require('./routes/user');
 var healthCodes = require('./routes/health-codes');
 var trains = require('./routes/trains');
+var messages = require('./routes/messages');
 
 var app = express();
 
@@ -36,6 +36,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/health-codes', healthCodes);
 app.use('/trains', trains);
+app.use('/messages', messages);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
