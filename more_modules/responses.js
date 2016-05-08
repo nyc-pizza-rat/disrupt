@@ -3,7 +3,7 @@ const mtaStatus = require('../api_modules/mta_status');
 const responseText = require('./responseText');
 const weatherStatus = require('weather-js');
 
-function getRandom(reponses) {
+function getRandom(responses) {
   if (Object.prototype.toString.call(responses) !== '[object Array]') {
     throw new TypeError('response text is not an array');
   }
