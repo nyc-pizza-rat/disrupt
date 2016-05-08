@@ -11,6 +11,7 @@ var users = require('./routes/user');
 var healthCodes = require('./routes/health-codes');
 var trains = require('./routes/trains');
 var messages = require('./routes/messages');
+var weather = require('./routes/weather');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use('/users', users);
 app.use('/health-codes', healthCodes);
 app.use('/trains', trains);
 app.use('/messages', messages);
+app.use('/weather', weather);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
