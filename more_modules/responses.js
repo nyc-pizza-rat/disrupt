@@ -32,7 +32,8 @@ function handle(message, cb) {
       });
       cb(restaurantCheck(codesWithGrades[0]));
     });
-  } else {
+  }
+  else {
     // send error 'fuck you' message
   }
 }
