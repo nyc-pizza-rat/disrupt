@@ -2,6 +2,13 @@ const healthCodes = require('../api_modules/health-codes');
 const mtaStatus = require('../api_modules/mta_status');
 const responseText = require('./responseText');
 
+function getRandom(reponses) {
+  if (Object.prototype.toString.call(responses) !== '[object Array]') {
+    throw new TypeError('response text is not an array');
+  }
+  return responses[Math.floor(Math.random() * responses.length)];
+}
+
 function eat(name, cb) {
   console.log('eat');
   healthCodes.getByName(name).then(function(healthCodes) {
@@ -42,17 +49,17 @@ function splitCommands(message) {
 function restaurantCheck(healthCode) {
   console.log(healthCode);
   if (healthCode.grade.toUpperCase() !== 'A') {
-    return 'Don\'t even think of going to that place';
+    return getRandom(responseText.healthCodes.positive);
   } else {
-    return 'meh... i guess it\'s ok';
+    return getRandom(responseText.healthCodes.negative);
   }
 }
 
 function trainCheck(lineStatus) {
   if(lineStatus !== 'GOOD SERVICE') {
-    return 'Ha! Good luck with that!';
+    return getRandom(responseText.trains.positive);
   } else {
-    return 'Ehh.. You might be OK.';
+    return getRandom(responseText.trains.negative);
   }
 }
 
