@@ -66,17 +66,17 @@ function splitCommands(message) {
 function restaurantCheck(healthCode) {
   console.log(healthCode);
   if (healthCode.grade.toUpperCase() !== 'A') {
-    return getRandom(responseText.healthCodes.positive);
-  } else {
     return getRandom(responseText.healthCodes.negative);
+  } else {
+    return getRandom(responseText.healthCodes.positive);
   }
 }
 
 function trainCheck(lineStatus) {
   if(lineStatus !== 'GOOD SERVICE') {
-    return getRandom(responseText.trains.positive) + 'Maybe you should just walk instead - go ahead and ask me what the weather is like with "/weather [location]"';
+    return getRandom(responseText.trains.negative) + ' Maybe you should just walk instead - go ahead and ask me what the weather is like with "/weather [location]"';
   } else {
-    return getRandom(responseText.trains.negative);
+    return getRandom(responseText.trains.positive);
   }
 }
 
