@@ -3,7 +3,7 @@ const mtaStatus = require('../api_modules/mta_status');
 const responseText = require('./responseText');
 const weatherStatus = require('weather-js');
 
-function getRandom(reponses) {
+function getRandom(responses) {
   if (Object.prototype.toString.call(responses) !== '[object Array]') {
     throw new TypeError('response text is not an array');
   }
@@ -32,9 +32,13 @@ function train(line, cb) {
     if(trainLine.length < 1){
       cb(listTrains());
     } else {
-      cb(trainCheck(trainLine[0].status));
+      cb(trainCheck(trainLine[0].status[0]));
     }
   });
+}
+
+function getTrainString(trainStatus) {
+  console.log(trainStatus);
 }
 
 function weather(location, cb) {
@@ -74,9 +78,9 @@ function restaurantCheck(healthCode) {
 
 function trainCheck(lineStatus) {
   if(lineStatus !== 'GOOD SERVICE') {
-    return getRandom(responseText.trains.positive) + 'Maybe you should just walk instead - go ahead and ask me what the weather is like with "/weather [location]"';
+    return getRandom(responseText.trainsText.negative) + ' Maybe you should just walk instead - go ahead and ask me what the weather is like with "/weather [location]"';
   } else {
-    return getRandom(responseText.trains.negative);
+    return getRandom(responseText.trainsText.positive);
   }
 }
 
