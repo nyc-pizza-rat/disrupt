@@ -7,18 +7,21 @@ $(document).ready(function() {
   var templateRat = Handlebars.compile(sourceRat);
   var sourceUser = $('#template-chat-user').html();
   var templateUser = Handlebars.compile(sourceUser);
+  var $chatWindow = $('.chat-window');
 
   function handleSubmit() {
     var message = $chatInput.val();
     $chatInput.val('');
     postMessage(message);
     $chatBox.append(templateUser({message: message}));
+    $chatWindow.scrollTop(999999);
   }
 
   function postMessage(message) {
     $.post('/messages', {message: message}).done(function(data) {
       console.log(data);
       $chatBox.append(templateRat(data));
+      $chatWindow.scrollTop(999999);
     });
   }
 
@@ -29,4 +32,6 @@ $(document).ready(function() {
       handleSubmit();
     }
   });
+
+
 });
