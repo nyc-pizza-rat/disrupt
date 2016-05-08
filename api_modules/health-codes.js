@@ -53,7 +53,9 @@ function getCodes(query) {
 }
 
 function getByName(name) {
-  return getCodes({dba: name});
+  return getCodes({
+    '$where': 'UPPER(dba) like \'%' + name.toUpperCase(name) + '%\''
+  });
 }
 
 function getByAddress(address) {
