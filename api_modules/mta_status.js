@@ -1,7 +1,7 @@
 var parseString = require('xml2js').parseString
 var http = require('http')
 
-function readTrainStatus() {
+function getAllTrains() {
   var status = '';
   var promise = new Promise( function(res, rej) {
     http.get('http://web.mta.info/status/serviceStatus.txt', function(response) {
@@ -24,7 +24,7 @@ function readTrainStatus() {
 }
 
 module.exports = {
-	getAllTrains: readTrainStatus,
+	getAllTrains: getAllTrains,
   getTrainString: function() {
     return '1234567ACEBDFMGJZLNQRS';
   }
