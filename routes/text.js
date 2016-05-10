@@ -10,21 +10,22 @@ const TWILIO_NUMBER = process.env.TWILIO_NUMBER;
 
 // Create an authenticated client to access the Twilio REST API
 var client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
-// Receive message
 
+// Receive message
 router.get('/', function(req, res) {
    var twiml = new twilio.TwimlResponse();
    res.writeHead(200, {'Content-Type': 'text/xml'});
    res.end(twiml.toString());
 });
+
 // Send message
 router.post('/', function(req, res) {
-   var twiml = new twilio.TwimlResponse();
-   responses.handle(req.body.Body, function(response) {
-     twiml.message(response);
-     res.writeHead(200, {'Content-Type': 'text/xml'});
-     res.end(twiml.toString());
-   });
+  var twiml = new twilio.TwimlResponse();
+  responses.getResponse(req.body.Body, function(response) {
+    twiml.message(response);
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString());
+  });
 });
 
 module.exports = router;
