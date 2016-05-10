@@ -70,17 +70,17 @@ function splitCommands(message) {
 function restaurantCheck(healthCode) {
   console.log(healthCode);
   if (healthCode.grade.toUpperCase() !== 'A') {
-    return getRandom(responseText.healthCodes.positive);
-  } else {
     return getRandom(responseText.healthCodes.negative);
+  } else {
+    return getRandom(responseText.healthCodes.positive);
   }
 }
 
 function trainCheck(lineStatus) {
   if(lineStatus !== 'GOOD SERVICE') {
-    return getRandom(responseText.trainsText.negative) + ' Maybe you should just walk instead - go ahead and ask me what the weather is like with "/weather [location]"';
+    return getRandom(responseText.trains.negative) + ' Maybe you should just walk instead - go ahead and ask me what the weather is like with "/weather [location]"';
   } else {
-    return getRandom(responseText.trainsText.positive);
+    return getRandom(responseText.trains.positive);
   }
 }
 
@@ -100,12 +100,9 @@ function weatherResponse(response) {
 function getResponse(message, cb) {
   var command = splitCommands(message)[0];
   var secondParam = splitCommands(message)[1];
-  // console.log(typeof commands[command] === 'function');
   if (typeof commands[command] === 'function' && secondParam) {
-    // console.log('command "is" a function');
     commands[command](secondParam, cb);
   } else {
-    // console.log('broken af');
     cb('Broken');
   }
 }
