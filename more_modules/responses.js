@@ -99,26 +99,11 @@ function weatherResponse(response) {
 
 function getResponse(message, cb) {
   var command = splitCommands(message)[0];
-<<<<<<< HEAD
-  var restaurantName = splitCommands(message)[1];
-  console.log(typeof commands[command] === 'function');
-  if (typeof commands[command] === 'function') {
-    commands[command](restaurantName).then(function(healthCodes) {
-      var codesWithGrades = healthCodes.filter(function(healthCode) {
-        return healthCode.hasOwnProperty('grade');
-      });
-      cb(restaurantCheck(codesWithGrades[0]));
-    });
-  }
-  else {
-    // send error 'fuck you' message
-=======
   var secondParam = splitCommands(message)[1];
   if (typeof commands[command] === 'function' && secondParam) {
     commands[command](secondParam, cb);
   } else {
     cb('Broken');
->>>>>>> e0e027b96713de1f94d0eb5cdcd0c29b958d46af
   }
 }
 
