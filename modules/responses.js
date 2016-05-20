@@ -32,9 +32,13 @@ function train(line, cb) {
     if(trainLine.length < 1){
       cb(listTrains());
     } else {
-      cb(trainCheck(trainLine[0].status));
+      cb(trainCheck(trainLine[0].status[0]));
     }
   });
+}
+
+function getTrainString(trainStatus) {
+  console.log(trainStatus);
 }
 
 function weather(location, cb) {
@@ -96,12 +100,9 @@ function weatherResponse(response) {
 function getResponse(message, cb) {
   var command = splitCommands(message)[0];
   var secondParam = splitCommands(message)[1];
-  // console.log(typeof commands[command] === 'function');
   if (typeof commands[command] === 'function' && secondParam) {
-    // console.log('command "is" a function');
     commands[command](secondParam, cb);
   } else {
-    // console.log('broken af');
     cb('Broken');
   }
 }

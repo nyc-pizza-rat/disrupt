@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
 // Send message
 router.post('/', function(req, res) {
    var twiml = new twilio.TwimlResponse();
-   responses.handle(req.body.Body, function(response) {
+   responses.getResponse(req.body.Body, function(response) {
      twiml.message(response);
      res.writeHead(200, {'Content-Type': 'text/xml'});
      res.end(twiml.toString());
