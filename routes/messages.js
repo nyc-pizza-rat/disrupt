@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const responses = require('../more_modules/responses');
+const responses = require('../modules/responses');
 
 router.post('/', function(req, res) {
   console.log(req.body);
