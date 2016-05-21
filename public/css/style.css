@@ -5855,19 +5855,24 @@ button.close {
 #hamburger {
   height: 1.5em;
   position: relative;
-  width: 2.5em; }
+  width: 2.25em; }
 
 .hamburger-slice {
-  height: .25em;
-  width: 100%;
-  background-color: white;
-  position: absolute; }
+  height: 15%;
+  background-color: #fff;
+  position: absolute;
+  width: 100%; }
+
+#hamburger:hover .hamburger-slice {
+  background-color: #a8dadc; }
 
 .hamburger-slice:first-child {
   top: 0; }
 
 .hamburger-slice:nth-child(2) {
   top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
 .hamburger-slice:last-child {
