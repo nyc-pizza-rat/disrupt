@@ -5851,3 +5851,24 @@ button.close {
   .logo path,
   .logo circle {
     fill: #fff; }
+
+#hamburger {
+  height: 1.5em;
+  position: relative;
+  width: 2.5em; }
+
+.hamburger-slice {
+  height: .25em;
+  width: 100%;
+  background-color: white;
+  position: absolute; }
+
+.hamburger-slice:first-child {
+  top: 0; }
+
+.hamburger-slice:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%); }
+
+.hamburger-slice:last-child {
+  bottom: 0%; }
