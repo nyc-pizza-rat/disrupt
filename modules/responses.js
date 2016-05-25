@@ -1,5 +1,5 @@
-const healthCodes = require('../api_modules/health-codes');
-const mtaStatus = require('../api_modules/mta_status');
+const healthCodes = require('../modules/api-facing/health-codes');
+const mtaStatus = require('../modules/api-facing/mta_status');
 const responseText = require('./responseText');
 const weatherStatus = require('weather-js');
 

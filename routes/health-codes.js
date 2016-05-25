@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var healthCodes = require('../api_modules/health-codes');
+var healthCodes = require('../modules/api-facing/health-codes');
 
 router.get('/name/:name', function(req, res) {
   healthCodes.getByName(req.params.name).then(function(codes) {
